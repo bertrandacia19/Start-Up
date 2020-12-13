@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet,  View } from 'react-native';
 import * as SplashScreen from "expo-splash-screen";
 import useDatabase from "./src/hoock/useDataBase";
-import { DramaContextProvider } from "./src/context/Dramacontext";
+import  DramaContextProvider  from "./src/context/Dramacontext";
+import  DramaListScreen  from "./src/Screens/DramaListScreen";
 
 export default function App() {
-   // Prevenir que la pantalla de splash se oculte
+  // Prevenir que la pantalla de splash se oculte
   SplashScreen.preventAutoHideAsync();
 
   const isLoadingComplete = useDatabase();
@@ -14,10 +15,10 @@ export default function App() {
   // Ocultar la pantalla de splash
   if (isLoadingComplete) SplashScreen.hideAsync();
   return (
-    <View style={styles.container}>
-        <DramaContextProvider>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View >
+      <DramaContextProvider>
+        <DramaListScreen/>
+        
       </DramaContextProvider>
     </View>
   );
