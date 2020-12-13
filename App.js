@@ -13,6 +13,7 @@ export default function App() {
 
   // Ocultar la pantalla de splash
   if (isLoadingComplete) SplashScreen.hideAsync();
+  
   return (
     <View style={styles.container}>
         <DramaContextProvider>

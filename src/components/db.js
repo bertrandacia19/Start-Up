@@ -92,6 +92,27 @@ const setupDatabaseTableAsync = async () => {
       );
     });
   };
+  // Agrega una nota por defecto
+const setupNotesAsync = async () => {
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql("insert into notes (titulo,descri) values (?,?)", [
+          "Bienvenido a Start-Up",
+          "NUEVA",
+        ]);
+      },
+      (_t, error) => {
+        console.log("Error al momento de insertar los valores por defecto");
+        console.log(error);
+        reject(error);
+      },
+      (_t, success) => {
+        resolve(success);
+      }
+    );
+  });
+};
 
 
 
@@ -100,4 +121,6 @@ const setupDatabaseTableAsync = async () => {
    insertDrama,
    setupDatabaseTableAsync,
    dropDatabaseTableAsync,
+   setupNotesAsync ,
+
   };

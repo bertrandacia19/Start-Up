@@ -19,7 +19,7 @@ export const DramaContextProvider = (props) => {
   }, []);
 
   const refreshNotes = () => {
-    return database.getNotes(setNotes);
+    return database.getDrama(setNotes);
   };
 
   const addNewNote = async (note) => {
@@ -50,8 +50,8 @@ export const DramaContextProvider = (props) => {
 
   // Pasar los valores al proveedor y retornarlo
   return (
-    <NotesContext.Provider value={notesContext}>
+    <dramaContext.Provider value={dramaContext}>
       {children}
-    </NotesContext.Provider>
+    </dramaContext.Provider>
   );
 };
