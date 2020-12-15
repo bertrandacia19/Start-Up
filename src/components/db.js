@@ -34,7 +34,7 @@ const getDrama =(setDramaFunc)=>{
 // Insertar drama
 const insertDrama = async (drama, successFunc) => {
 const dato=titulo[0];
-const dato2=descr[1];
+const dato2=titulo[1];
     db.transaction(
       (tx) => {
         tx.executeSql("insert into drama(titulo,descr) values (?,?)", [
@@ -97,7 +97,7 @@ const setupNotesAsync = async () => {
   return new Promise((resolve, reject) => {
     db.transaction(
       (tx) => {
-        tx.executeSql("insert into notes (titulo,descri) values (?,?)", [
+        tx.executeSql("insert into drama (titulo,descr) values (?,?)", [
           "Bienvenido a Start-Up",
           "NUEVA",
         ]);

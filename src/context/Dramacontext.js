@@ -7,28 +7,28 @@ export const DramaContext = createContext({});
 export const DramaContextProvider = (props) => {
   // Obtener los valores iniciales para el contexto
   // se obtienen desde los props
-  const { notes: initialNotes, children } = props;
+  const { Drama: initialNotes, children } = props;
 
   // Almacenar los valores en el estado
-  const [notes, setNotes] = useState(initialNotes);
-  const [note, setNote] = useState("");
+  const [Drama, setDrama] = useState(initialNotes);
+  const [drama, setNote] = useState("");
 
   // Cargar u obtener las notas
   useEffect(() => {
-    refreshNotes();
+    refreshDrama();
   }, []);
 
-  const refreshNotes = () => {
-    return database.getDrama(setNotes);
+  const refreshDrama = () => {
+    return database.getDrama(setDrama);
   };
 
-  const addNewNote = async (note) => {
-    await database.insertNotes(note, refreshNotes);
-    return refreshNotes();
+  const addNewNote = async (drama) => {
+    await database.insertDrama(drama, refreshDrama);
+    return refreshDrama();
   };
 
-  const getNoteById = (id) => {
-    return database.getNoteById(id, setNote);
+  const getDramaById = (id) => {
+    return database.getDramaById(id, setdrama);
 
     console.log(response);
 
@@ -42,10 +42,10 @@ export const DramaContextProvider = (props) => {
 
   // Crear el objeto de contexto
   const dramaContext = {
-    notes, 
-    note,
+    Drama,
+    drama,
     addNewNote,
-    getNoteById,
+    getDramaById,
   };
 
   // Pasar los valores al proveedor y retornarlo
