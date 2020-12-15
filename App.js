@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet,  View } from 'react-native';
+import {  View } from 'react-native';
 import * as SplashScreen from "expo-splash-screen";
 import useDatabase from "./src/hoock/useDataBase";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -26,6 +25,9 @@ export default function App() {
           <Stack.Screen name="dramalist" component={DramaListScreen}></Stack.Screen>
           
         </NavigationContainer>
+
+        <DramaListScreen/>
+
       </DramaContextProvider>
     </View>
   );

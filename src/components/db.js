@@ -52,6 +52,7 @@ const getDramaById = (id, setDramaFunc) => {
 
 // Insertar drama
 const insertDrama = async (titulo, successFunc) => {
+
   const dato = titulo[0];
   const dato2 = titulo[1];
   db.transaction(
@@ -93,6 +94,10 @@ const dropDatabaseTableAsync = async () => {
 // Creación de la tabla de Drama
 const setupDatabaseTableAsync = async () => {
   return new Promise((resolve, reject) => {
+
+const dato=titulo[0];
+const dato2=descr[1];
+
     db.transaction(
       (tx) => {
         tx.executeSql(

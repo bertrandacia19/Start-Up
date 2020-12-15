@@ -22,9 +22,11 @@ export const DramaContextProvider = (props) => {
     return database.getDrama(setDramas);
   };
 
+
   const addNewDrama = async (drama) => {
     await database.insertDramas(drama, refreshDramas);
     return refreshDramas();
+
   };
 
   const getDramaById = (id) => {
