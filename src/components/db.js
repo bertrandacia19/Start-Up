@@ -1,3 +1,4 @@
+
 import React from "react";
 import * as SQlite from "expo-sqlite";
 
@@ -52,7 +53,6 @@ const getDramaById = (id, setDramaFunc) => {
 
 // Insertar drama
 const insertDrama = async (titulo, successFunc) => {
-
   const dato = titulo[0];
   const dato2 = titulo[1];
   db.transaction(
@@ -94,10 +94,6 @@ const dropDatabaseTableAsync = async () => {
 // Creación de la tabla de Drama
 const setupDatabaseTableAsync = async () => {
   return new Promise((resolve, reject) => {
-
-const dato=titulo[0];
-const dato2=descr[1];
-
     db.transaction(
       (tx) => {
         tx.executeSql(
@@ -117,9 +113,8 @@ const dato2=descr[1];
   });
 };
 
- const setupDramaAsync = async () => {
+const setupDramaAsync = async () => {
   return new Promise((resolve, reject) => {
-    /* console.log("entro"); */
     db.transaction(
       (tx) => {
         tx.executeSql("insert into drama (titulo,descr) values (?,?)", [
@@ -133,12 +128,11 @@ const dato2=descr[1];
         reject(error);
       },
       (_t, success) => {
-        /* console.log("se creo"); */
         resolve(success);
       }
     );
   });
-}; 
+};
 
 
 
