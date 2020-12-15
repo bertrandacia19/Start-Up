@@ -57,16 +57,16 @@ const AddListScreen = ({ navigation }) => {
   if (!fontsLoaded)
     return (
       <Content contentContainerStyle={styles.content}>
-        <Spinner color="blue" />
+        <Spinner color="red" />
       </Content>
     );
 
   return (
     <Content>
       <Container style={styles.container}>
-        <H1>Ingresa El dorama</H1>
+       
         <Textarea
-          rowSpan={5}
+          rowSpan={20}
           bordered
           placeholder="Escribe la descrpción del dorama..."
           value={drama}
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
   },
   button: {
     fontFamily: "Roboto",
+    backgroundColor: "#f44336",
   },
   error: {
     fontSize: 12,
@@ -110,6 +111,9 @@ const styles = StyleSheet.create({
   drama: {
     borderColor: "black",
     marginBottom: 10,
+  },
+  container: {
+    backgroundColor: "#4f9a94",
   },
 });
 

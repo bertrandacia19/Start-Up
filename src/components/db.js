@@ -71,10 +71,10 @@ const dropDatabaseTableAsync = async () => {
   return new Promise((resolve, reject) => {
     db.transaction(
       (tx) => {
-        tx.executeSql("drop table notes");
+        tx.executeSql("drop table dramas");
       },
       (_t, error) => {
-        console.log("Error al eliminar la tabla de notas");
+        console.log("Error al eliminar la tabla de dramas");
         reject(error);
       },
       (_t, result) => {
