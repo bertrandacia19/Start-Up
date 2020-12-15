@@ -23,7 +23,7 @@ export const DramaContextProvider = (props) => {
   };
 
   const addNewNote = async (note) => {
-    await database.insertNotes(note, refreshNotes);
+    await database.insertDrama(note, refreshNotes);
     return refreshNotes();
   };
 
