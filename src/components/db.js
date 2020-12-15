@@ -1,70 +1,63 @@
-
 import React from "react";
-import * as SQlite from "expo-sqlite";
+import * as SQLite from "expo-sqlite";
 
+// https://docs.expo.io/versions/latest/sdk/sqlite/
+// Crea y abre la base de datos
+const db = SQLite.openDatabase("Start-up.db");
 
-//crea y abre la base de datos
+// Funcionalidades de la base de datos
 
-const db = SQlite.openDatabase("Start-up.db");
-
-//funcionalidades de la base de datos
-
-//obtener las notas del usuario
-
+// Obtener las notas del usuario
 const getDrama = (setDramaFunc) => {
   db.transaction((tx) => {
     tx.executeSql(
-
-      "select * from drama",
+      "select * from dramas",
       [],
       (_, { rows: { _array } }) => {
         setDramaFunc(_array);
       },
       (_t, error) => {
-        console.log("Error al momento de obtener el drama ");
+        console.log("Error al momento de obtener las notas de los dramas");
         console.log(error);
       },
       (_t, _success) => {
-        console.log("Dramas obtenidos");
+        console.log("Notas obtenidas");
       }
     );
   });
 };
 
-//obtener nota por ID
+// Obtener la nota por el id
 const getDramaById = (id, setDramaFunc) => {
   db.transaction((tx) => {
     tx.executeSql(
-      "select * from drama where PKdramaID = ?",
+      "select * from dramas where id = ?",
       [id],
       (_, { rows: { _array } }) => {
-        setNoteFunc(_array);
+        setDramaFunc(_array);
       },
       (_t, error) => {
-        console.log("Error al momento de obtener las dramas");
+        console.log("Error al momento de obtener las descripciones de los dramas");
         console.log(error);
       },
       (_t, _success) => {
-        console.log("Drama obtenidas");
+        console.log("Nota obtenidas");
       }
     );
   });
 };
 
-// Insertar drama
-const insertDrama = async (titulo, successFunc) => {
-  const dato = titulo[0];
-  const dato2 = titulo[1];
+// Insertar notas
+const insertDramas = async (drama, successFunc) => {
   db.transaction(
     (tx) => {
-      tx.executeSql("insert into drama(titulo,descr) values (?,?)", [
-        dato, dato2
-
+      tx.executeSql("insert into dramas (drama, status) values (?,?)", [
+        drama,
+        "NUEVA",
       ]);
     },
     (_t, error) => {
-      console.log("Error al insertar el drama");
-      console.log(_t);
+      console.log("Error al insertar la descripción de los doramas");
       console.log(error);
     },
     (_t, _success) => {
@@ -78,10 +71,10 @@ const dropDatabaseTableAsync = async () => {
   return new Promise((resolve, reject) => {
     db.transaction(
       (tx) => {
-        tx.executeSql("drop table drama");
+        tx.executeSql("drop table notes");
       },
       (_t, error) => {
-        console.log("Error al eliminar la tabla de drama");
+        console.log("Error al eliminar la tabla de notas");
         reject(error);
       },
       (_t, result) => {
@@ -91,13 +84,13 @@ const dropDatabaseTableAsync = async () => {
   });
 };
 
-// Creación de la tabla de Drama
+// Creación de la tabla de notas
 const setupDatabaseTableAsync = async () => {
   return new Promise((resolve, reject) => {
     db.transaction(
       (tx) => {
         tx.executeSql(
-          "create table if not exists drama (PKdramaID integer primary key autoincrement, titulo text not null, descr text not null);"
+          "create table if not exists dramas (id integer primary key autoincrement, drama text not null, status text not null);"
         );
       },
       (_t, error) => {
@@ -113,12 +106,13 @@ const setupDatabaseTableAsync = async () => {
   });
 };
 
-const setupDramaAsync = async () => {
+// Agrega una nota por defecto
+const setupDramasAsync = async () => {
   return new Promise((resolve, reject) => {
     db.transaction(
       (tx) => {
-        tx.executeSql("insert into drama (titulo,descr) values (?,?)", [
-          "Bienvenido a Start-Up",
+        tx.executeSql("insert into dramas (drama, status) values (?,?)", [
+          "Bienvenido a Start-up",
           "NUEVA",
         ]);
       },
@@ -134,14 +128,11 @@ const setupDramaAsync = async () => {
   });
 };
 
-
-
 export const database = {
   getDrama,
-  insertDrama,
-  setupDatabaseTableAsync,
+  insertDramas,
   dropDatabaseTableAsync,
-  setupDramaAsync,
+  setupDatabaseTableAsync,
+  setupDramasAsync,
   getDramaById,
-
 };

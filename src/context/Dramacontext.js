@@ -2,15 +2,15 @@ import React, { useEffect, createContext, useState } from "react";
 import { database } from "../components/db";
 
 // Crear el contexto de las notas
-export const DramaContext = createContext({});
+export const DramasContext = createContext({});
 
-export const DramaContextProvider = (props) => {
+export const DramasContextProvider = (props) => {
   // Obtener los valores iniciales para el contexto
   // se obtienen desde los props
-  const { dramas: initialDramas, children } = props;
+  const { dramas: initialDrama, children } = props;
 
   // Almacenar los valores en el estado
-  const [Dramas, setDramas] = useState(initialDramas);
+  const [dramas, setDramas] = useState(initialDrama);
   const [drama, setDrama] = useState("");
 
   // Cargar u obtener las notas
@@ -22,15 +22,13 @@ export const DramaContextProvider = (props) => {
     return database.getDrama(setDramas);
   };
 
-
   const addNewDrama = async (drama) => {
-    await database.insertDrama(drama, refreshDramas);
+    await database.insertDramas(drama, refreshDramas);
     return refreshDramas();
-
   };
 
-  const getDramaById = (PKdramaID) => {
-    return database.getDramaById(PKdramaID, setDrama);
+  const getDramasById = (id) => {
+    return database.getDramasById(id, setDrama);
 
     console.log(response);
 
@@ -43,17 +41,17 @@ export const DramaContextProvider = (props) => {
   };
 
   // Crear el objeto de contexto
-    const dramaContext = {
-    Dramas, 
+  const dramasContext = {
+    dramas,
     drama,
     addNewDrama,
-    getDramaById,
+    getDramasById,
   };
 
   // Pasar los valores al proveedor y retornarlo
   return (
-    <DramaContext.Provider value={dramaContext}>
+    <DramasContext.Provider value={dramasContext}>
       {children}
-    </DramaContext.Provider>
+    </DramasContext.Provider>
   );
 };

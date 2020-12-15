@@ -1,22 +1,14 @@
 import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
-import {
-  Container,
-  Content,
-  Fab,
-  Icon,
-  List,
-  ListItem,
-  Text,
-  Body,
-  Right,
+import { Container,Content, Fab, Icon, List,ListItem, Text, Body,
+ Right,
 } from "native-base";
 
 // Utilizar el contexto de notas
-import { DramaContext } from "../context/DramaContext";
+import { DramasContext } from "../context/DramaContext";
 
 const DramaListScreen = ({ navigation }) => {
-  const { dramas } = useContext(DramaContext);
+  const { dramas } = useContext(DramasContext);
 
   return (
     <Container>
@@ -25,9 +17,9 @@ const DramaListScreen = ({ navigation }) => {
           {dramas
             ? dramas.map((drama) => (
                 <ListItem
-                  key={drama.PKdramaID.toString()}
+                  key={drama.id.toString()}
                   onPress={() => {
-                    navigation.navigate("noteModify", {PKdramaID: drama.PKdramaID });// AddModificatedrama
+                    navigation.navigate("noteModify", {id: drama.id });// AddModificatedrama
                   }}
                 >
                   <Body>

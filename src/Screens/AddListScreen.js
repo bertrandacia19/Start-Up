@@ -13,15 +13,15 @@ import {
 import * as Font from "expo-font";
 
 // Importar el contexto de las notas
-import { DramaContext } from "../context/DramaContext";
+import { DramasContext } from "../context/DramaContext";
 
 const AddListScreen = ({ navigation }) => {
   const [drama, setDrama] = useState("");
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [enableSave, setEnableSave] = useState(true);
   const [errorDrama, setErrorDrama] = useState(false);
-  const dramaContext = useContext(DramaContext);
-  const { addNewDrama, refreshDrama } = dramaContext;
+  const dramasContext = useContext(DramasContext);
+  const { addNewDrama, refreshDramas } = dramasContext;
 
   // Cargar la fuente de manera asíncrona
   useEffect(() => {
@@ -45,7 +45,7 @@ const AddListScreen = ({ navigation }) => {
   const handlerNewDrama = async () => {
     // Validar que la nota tiene valor
     if (drama) {
-      await addNewDrama(drama, refreshDrama);
+      await addNewDrama(drama, refreshDramas);
 
       // Regresar a la pantalla anterior
       navigation.goBack();
@@ -64,17 +64,17 @@ const AddListScreen = ({ navigation }) => {
   return (
     <Content>
       <Container style={styles.container}>
-        <H1>Ingresa tu nota</H1>
+        <H1>Ingresa El dorama</H1>
         <Textarea
           rowSpan={5}
           bordered
-          placeholder="Escribe algo..."
+          placeholder="Escribe la descrpción del dorama..."
           value={drama}
           onChangeText={setDrama}
           style={errorDrama ? styles.inputError : styles.drama}
         />
         {errorDrama ? (
-          <Text style={styles.error}>¡Debes ingresar un Dorama!</Text>
+          <Text style={styles.error}>¡Debes ingresar el dorama!</Text>
         ) : null}
         <Button
           style={styles.button}
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddListScreen;
+export default AddListScreen ;
