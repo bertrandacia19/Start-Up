@@ -13,7 +13,7 @@ import {
 import * as Font from "expo-font";
 
 // Importar el contexto de las notas
-import { DramasContext } from "../context/DramaContext";
+import { DramasContext } from "../context/Dramacontext";
 
 const AddListScreen = ({ navigation }) => {
   const [drama, setDrama] = useState("");

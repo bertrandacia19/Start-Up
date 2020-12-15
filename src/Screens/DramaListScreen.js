@@ -5,7 +5,7 @@ import { Container,Header,Item,Content, Fab, Icon, List,ListItem, Text, Body,
 } from "native-base";
 const {width, height} = Dimensions.get("window");
 // Utilizar el contexto de notas
-import { DramasContext } from "../context/DramaContext";
+import { DramasContext } from "../context/Dramacontext";
 
 const DramaListScreen = ({ navigation }) => {
   const { dramas } = useContext(DramasContext);

@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import useDataBase from "./src/hoock/useDataBase";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { DramasContextProvider } from "./src/context/DramaContext";
+import { DramasContextProvider } from "./src/context/Dramacontext";
 import DramaListScreen from "./src/Screens/DramaListScreen";
 import AddListScreen from "./src/Screens/AddListScreen";
 
