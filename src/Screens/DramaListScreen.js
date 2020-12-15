@@ -13,7 +13,7 @@ import {
 } from "native-base";
 
 // Utilizar el contexto de notas
-import { DramaContext } from "../context/DramaContext";
+import { DramaContext } from "../Context/DramaContext";
 
 const DramaListScreen = ({ navigation }) => {
   const { dramas } = useContext(DramaContext);
@@ -25,9 +25,9 @@ const DramaListScreen = ({ navigation }) => {
           {dramas
             ? dramas.map((drama) => (
                 <ListItem
-                  key={drama.id.toString()}
+                  //key={drama.id.toString()}
                   onPress={() => {
-                    navigation.navigate("noteModify", { id: drama.id });
+                    navigation.navigate("noteModify", { id: drama.id });// AddModificatedrama
                   }}
                 >
                   <Body>
@@ -44,10 +44,11 @@ const DramaListScreen = ({ navigation }) => {
       <Fab
         active={true}
         position="bottomRight"
-        style={{ backgroundColor: "#ff0023" }}
+        style={{ backgroundColor: "#000051" }}
         direction="up"
         onPress={() => {
-          navigation.navigate("noteCreate");
+          navigation.navigate("Agregar dorama");
+          
         }}
       >
         <Icon name="plus" type="FontAwesome" />

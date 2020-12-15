@@ -4,8 +4,9 @@ import * as SplashScreen from "expo-splash-screen";
 import useDataBase from "./src/hoock/useDataBase";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { DramaContextProvider } from "./src/context/DramaContext";
+import { DramaContextProvider } from "./src/Context/DramaContext";
 import DramaListScreen from "./src/Screens/DramaListScreen";
+import AddListScreen from "./src/Screens/AddListScreen";
 /* import NoteCreateScreen from "./src/screens/NoteCreateScreen";
 import NoteModifyScreen from "./src/screens/NoteModifyScreen"; */
 
@@ -26,8 +27,8 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Lista de Dramas">
             <Stack.Screen name="Lista de Dramas" component={DramaListScreen} />
-            {/* <Stack.Screen name="noteCreate" component={NoteCreateScreen} />
-            <Stack.Screen name="noteModify" component={NoteModifyScreen} /> */}
+             <Stack.Screen name="Agregar dorama" component={AddListScreen} />
+            
           </Stack.Navigator>
         </NavigationContainer>
       </DramaContextProvider>
