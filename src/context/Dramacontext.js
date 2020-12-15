@@ -24,13 +24,13 @@ export const DramaContextProvider = (props) => {
 
 
   const addNewDrama = async (drama) => {
-    await database.insertDramas(drama, refreshDramas);
+    await database.insertDrama(drama, refreshDramas);
     return refreshDramas();
 
   };
 
-  const getDramaById = (id) => {
-    return database.getDramaById(id, setDrama);
+  const getDramaById = (PKdramaID) => {
+    return database.getDramaById(PKdramaID, setDrama);
 
     console.log(response);
 

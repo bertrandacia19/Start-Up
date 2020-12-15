@@ -13,7 +13,7 @@ import {
 } from "native-base";
 
 // Utilizar el contexto de notas
-import { DramaContext } from "../Context/DramaContext";
+import { DramaContext } from "../context/DramaContext";
 
 const DramaListScreen = ({ navigation }) => {
   const { dramas } = useContext(DramaContext);
@@ -25,9 +25,9 @@ const DramaListScreen = ({ navigation }) => {
           {dramas
             ? dramas.map((drama) => (
                 <ListItem
-                  //key={drama.id.toString()}
+                  key={drama.PKdramaID.toString()}
                   onPress={() => {
-                    navigation.navigate("noteModify", { id: drama.id });// AddModificatedrama
+                    navigation.navigate("noteModify", {PKdramaID: drama.PKdramaID });// AddModificatedrama
                   }}
                 >
                   <Body>
